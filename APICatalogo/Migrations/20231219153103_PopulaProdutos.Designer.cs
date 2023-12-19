@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace APICatalogo.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231218143930_MigracaoInicial")]
-    partial class MigracaoInicial
+    [Migration("20231219153103_PopulaProdutos")]
+    partial class PopulaProdutos
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,10 +28,14 @@ namespace APICatalogo.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("ImagemUrl")
-                        .HasColumnType("longtext");
+                        .IsRequired()
+                        .HasMaxLength(300)
+                        .HasColumnType("varchar(300)");
 
                     b.Property<string>("Nome")
-                        .HasColumnType("longtext");
+                        .IsRequired()
+                        .HasMaxLength(80)
+                        .HasColumnType("varchar(80)");
 
                     b.HasKey("CategoriaId");
 
@@ -44,30 +48,36 @@ namespace APICatalogo.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("CategoriaID")
+                    b.Property<int>("CategoriaId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("DataCadastro")
                         .HasColumnType("datetime");
 
-                    b.Property<string>("Descrcicao")
-                        .HasColumnType("longtext");
+                    b.Property<string>("Descricao")
+                        .IsRequired()
+                        .HasMaxLength(300)
+                        .HasColumnType("varchar(300)");
 
                     b.Property<float>("Estoque")
                         .HasColumnType("float");
 
-                    b.Property<string>("ImagemURL")
-                        .HasColumnType("longtext");
+                    b.Property<string>("ImagemUrl")
+                        .IsRequired()
+                        .HasMaxLength(300)
+                        .HasColumnType("varchar(300)");
 
                     b.Property<string>("Nome")
-                        .HasColumnType("longtext");
+                        .IsRequired()
+                        .HasMaxLength(80)
+                        .HasColumnType("varchar(80)");
 
-                    b.Property<decimal?>("Preco")
-                        .HasColumnType("decimal(65,30)");
+                    b.Property<decimal>("Preco")
+                        .HasColumnType("decimal(10,2)");
 
                     b.HasKey("ProdutoId");
 
-                    b.HasIndex("CategoriaID");
+                    b.HasIndex("CategoriaId");
 
                     b.ToTable("Produtos");
                 });
@@ -76,7 +86,7 @@ namespace APICatalogo.Migrations
                 {
                     b.HasOne("APICatalogo.Controllers.Models.Categoria", "Categoria")
                         .WithMany("Produtos")
-                        .HasForeignKey("CategoriaID")
+                        .HasForeignKey("CategoriaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

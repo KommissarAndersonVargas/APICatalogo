@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace APICatalogo.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231218201138_PopulaCategorias")]
-    partial class PopulaCategorias
+    [Migration("20231219150904_AjusteTabelas")]
+    partial class AjusteTabelas
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
