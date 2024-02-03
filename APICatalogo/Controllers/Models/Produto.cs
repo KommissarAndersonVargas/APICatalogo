@@ -2,6 +2,7 @@
 namespace APICatalogo.Controllers.Models;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 [Table("Produtos")]
 public class Produto
@@ -29,6 +30,7 @@ public class Produto
     public DateTime DataCadastro { get; set; }
 
     public int CategoriaId { get; set; }
+    [JsonIgnore]
     public Categoria? Categoria { get; set; }
 
 }
